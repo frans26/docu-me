@@ -1,22 +1,25 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import reportWebVitals from "./reportWebVitals";
+import 'bulmaswatch/superhero/bulmaswatch.min.css';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import reportWebVitals from './reportWebVitals';
+import CodeCell from './components/code-cell';
 
 const App = () => {
   return (
     <div>
-      <h1>Hi there!</h1>
+      <CodeCell />
+      <CodeCell />
     </div>
   );
 };
 
 const root = ReactDOM.createRoot(
-  document.getElementById("root") as HTMLElement
+  document.getElementById('root') as HTMLElement,
 );
 root.render(
   <React.StrictMode>
     <App />
-  </React.StrictMode>
+  </React.StrictMode>,
 );
 
 // If you want to start measuring performance in your app, pass a function
