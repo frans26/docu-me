@@ -10,16 +10,16 @@ export const fetchPlugin = (inputCode: string) => {
   return {
     name: 'fetch-plugin',
     setup(build: esbuild.PluginBuild) {
-      build.onLoad({ filter: /(^index\.js$)/ }, () => {
+      build.onLoad({filter: /(^index\.js$)/}, () => {
         return {
           loader: 'jsx',
           contents: inputCode,
         };
       });
 
-      build.onLoad({ filter: /.*/ }, async (args: any) => {
+      build.onLoad({filter: /.*/}, async (args: any) => {
         const cachedResult = await fileCache.getItem<esbuild.OnLoadResult>(
-          args.path
+          args.path,
         );
 
         if (cachedResult) {
@@ -27,8 +27,8 @@ export const fetchPlugin = (inputCode: string) => {
         }
       });
 
-      build.onLoad({ filter: /.css$/ }, async (args: any) => {
-        const { data, request } = await axios.get(args.path);
+      build.onLoad({filter: /.css$/}, async (args: any) => {
+        const {data, request} = await axios.get(args.path);
         const escaped = data
           .replace(/\n/g, '')
           .replace(/"/g, '\\"')
@@ -49,8 +49,8 @@ export const fetchPlugin = (inputCode: string) => {
         return result;
       });
 
-      build.onLoad({ filter: /.*/ }, async (args: any) => {
-        const { data, request } = await axios.get(args.path);
+      build.onLoad({filter: /.*/}, async (args: any) => {
+        const {data, request} = await axios.get(args.path);
 
         const result: esbuild.OnLoadResult = {
           loader: 'jsx',
