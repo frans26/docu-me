@@ -1,6 +1,6 @@
 {
   "name": "docu-me",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "",
   "files": [
     "dist"
@@ -17,10 +17,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@docu-me/local-client": "^1.0.1"
+    "@docu-me/local-client": "^1.0.2"
   },
   "devDependencies": {
-    "@docu-me/local-api": "^1.0.1",
+    "@docu-me/local-api": "^1.0.2",
     "@types/node": "^14.14.22",
     "commander": "^7.0.0",
     "esbuild": "0.8.26",
