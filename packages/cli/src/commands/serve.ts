@@ -1,6 +1,6 @@
 import path from 'path';
 import {Command} from 'commander';
-import {serve} from 'local-api';
+import {serve} from '@docu-me/local-api';
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -20,7 +20,7 @@ export const serveCommand = new Command()
       console.log(
         `Opened ${filename}. Navigate to http://localhost:${options.port} to edit the file.`,
       );
-    } catch (err) {
+    } catch (err: any) {
       if (err.code === 'EADDRINUSE') {
         console.error('Port is in use. Try running on a different port.');
       } else {

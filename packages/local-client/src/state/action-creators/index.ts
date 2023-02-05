@@ -85,7 +85,7 @@ export const fetchCells = () => {
         type: ActionType.FETCH_CELLS_COMPLETE,
         payload: data,
       });
-    } catch (err) {
+    } catch (err: any) {
       dispatch({
         type: ActionType.FETCH_CELLS_ERROR,
         payload: err.message,
@@ -96,19 +96,21 @@ export const fetchCells = () => {
 
 export const saveCells = () => {
   return async (dispatch: Dispatch<Action>, getState: () => RootState) => {
-    const {
-      cells: {data, order},
-    } = getState();
+    const stateCell = getState();
 
-    const cells = order.map(id => data[id]);
+    if (stateCell.cells) {
+      const {data, order} = stateCell.cells;
 
-    try {
-      await axios.post('/cells', {cells});
-    } catch (err) {
-      dispatch({
-        type: ActionType.SAVE_CELLS_ERROR,
-        payload: err.message,
-      });
+      const cells = order.map(id => data[id]);
+
+      try {
+        await axios.post('/cells', {cells});
+      } catch (err: any) {
+        dispatch({
+          type: ActionType.SAVE_CELLS_ERROR,
+          payload: err.message,
+        });
+      }
     }
   };
 };
